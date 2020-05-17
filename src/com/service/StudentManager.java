@@ -11,9 +11,13 @@ public class StudentManager {
     Scanner in =new Scanner(System.in);
     public static int index=0;//数组下标
     public static int count=0;
+    /*7
+    public static List<Student> stulist = new ArrayList<Student>();*/
+    //修改后的代码
+    //stulist集合用于存放学生对象信息
     public static List<Student> stulist = new ArrayList<Student>();
 
-    public void APP(){
+    public void APP() {
         System.out.println();
         System.out.println("请输入你想执行的操作所对应的序号：");
         System.out.println("*********************************");
@@ -24,8 +28,8 @@ public class StudentManager {
         System.out.println("**          5 输出             **");
         System.out.println("**          6 退出             **");
         System.out.println("*********************************");
-        int number=in.nextInt();
-        switch (number){
+        int number = in.nextInt();
+        switch (number) {
             case 1:
                 addStu();
                 APP();
@@ -54,8 +58,12 @@ public class StudentManager {
                 APP();
                 break;
         }
-    }
-    
+        //6
+        //}
+    //添加注释后的代码
+    }//public void APP()
+
+    /*22
     private void printAllStu() {
         Collections.sort(stulist, new Comparator<Student>() {
             @Override
@@ -71,6 +79,27 @@ public class StudentManager {
         for(Student stu : stulist){
             System.out.println(stu.toString());
         }
+    }*/
+    //修改后的代码
+    private void printAllStu() {
+        sortList();
+        if(0==stulist.size()){
+            System.out.println("当前暂无学生信息！");
+            return;
+        }
+        System.out.println("当前所有学生信息如下：");
+        for(Student stu : stulist){
+            System.out.println(stu.toString());
+        }
+    }
+
+    private void sortList(){
+        Collections.sort(stulist, new Comparator<Student>() {
+            @Override
+            public int compare(Student student, Student t1) {
+                return student.getId() - t1.getId();
+            }
+        });
     }
 
     private void updateByName() {
@@ -95,11 +124,20 @@ public class StudentManager {
                 stu.setGender(gender);
                 break;
             }
-        }if(flag==0){
+        }
+        /*34
+        if(flag==0){
+            System.out.println("暂无该姓名的学生，请重试！");
+        }*/
+        //修改后的代码
+        if(0==flag){
             System.out.println("暂无该姓名的学生，请重试！");
         }
         return;
-    }
+    //6
+    //}
+    // 添加注释后的代码
+    }//private void updateByName()
 
     private void deleteByName() {
         System.out.println("请输入你要删除的学生姓名：");
@@ -113,8 +151,13 @@ public class StudentManager {
                 break;
             }
         }
+        /*34
         if(flag==0){
-            System.out.println("暂无该学生信息，请重试！");
+            System.out.println("暂无该姓名的学生，请重试！");
+        }*/
+        //修改后的代码
+        if(0==flag){
+            System.out.println("暂无该姓名的学生，请重试！");
         }return;
     }
 
@@ -150,5 +193,4 @@ public class StudentManager {
         Student s = new Student(id,name,birDate,gender);
         stulist.add(s);
     }
-
 }
